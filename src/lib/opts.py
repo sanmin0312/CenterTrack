@@ -10,10 +10,10 @@ class opts(object):
   def __init__(self):
     self.parser = argparse.ArgumentParser()
     # basic experiment setting
-    self.parser.add_argument('task', default='',
+    self.parser.add_argument('task', default='tracking',
                              help='ctdet | ddd | multi_pose '
                              '| tracking or combined with ,')
-    self.parser.add_argument('--dataset', default='coco',
+    self.parser.add_argument('--dataset', default='nuscenes',
                              help='see lib/dataset/dataset_facotry for ' + 
                             'available datasets')
     self.parser.add_argument('--test_dataset', default='',
