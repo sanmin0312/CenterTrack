@@ -10,10 +10,10 @@ class opts(object):
   def __init__(self):
     self.parser = argparse.ArgumentParser()
     # basic experiment setting
-    self.parser.add_argument('task', default='tracking',
+    self.parser.add_argument('--task', default='tracking',
                              help='ctdet | ddd | multi_pose '
                              '| tracking or combined with ,')
-    self.parser.add_argument('--dataset', default='nuscenes',
+    self.parser.add_argument('--dataset', default='kitti_tracking',
                              help='see lib/dataset/dataset_facotry for ' + 
                             'available datasets')
     self.parser.add_argument('--test_dataset', default='',
@@ -39,7 +39,7 @@ class opts(object):
                                   'in the exp dir if load_model is empty.') 
 
     # system
-    self.parser.add_argument('--gpus', default='0', 
+    self.parser.add_argument('--gpus', default='-1',
                              help='-1 for CPU, use comma for multiple gpus')
     self.parser.add_argument('--num_workers', type=int, default=4,
                              help='dataloader threads. 0 for single-thread.')
@@ -315,8 +315,9 @@ class opts(object):
       opt.master_batch_size = -1
 
     # log dirs
-    opt.root_dir = os.path.join(os.path.dirname(__file__), '..', '..')
-    opt.data_dir = os.path.join(opt.root_dir, 'data')
+    # opt.root_dir = os.path.join(os.path.dirname(__file__), '..', '..')
+    opt.root_dir = os.path.join(os.path.dirname(__file__))
+    opt.data_dir = os.path.join('/home/ubuntu/VDC', 'Dataset')
     opt.exp_dir = os.path.join(opt.root_dir, 'exp', opt.task)
     opt.save_dir = os.path.join(opt.exp_dir, opt.exp_id)
     opt.debug_dir = os.path.join(opt.save_dir, 'debug')
